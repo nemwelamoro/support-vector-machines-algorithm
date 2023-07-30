@@ -1,0 +1,8 @@
+import pandas as pd
+import numpy as np
+#import data
+hivdt=pd.read_csv("C:/Users/FBI/Downloads/phiacd4 (1).csv")
+#data manipulation
+hivtz = hivdt[hivdt['Kenya'] == 1]
+print(hivtz.head())
+print(hivtz.columns)
