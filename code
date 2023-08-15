@@ -6,3 +6,6 @@ hivdt=pd.read_csv("C:/Users/FBI/Downloads/phiacd4 (1).csv")
 hivtz = hivdt[hivdt['Kenya'] == 1]
 print(hivtz.head())
 print(hivtz.columns)
+#remove country labelled datasets
+hivtz2 = hivtz.drop(columns=['Malawi','Swaziland','Zambia'])
+print(hivtz2.columns)
