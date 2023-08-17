@@ -9,3 +9,33 @@ print(hivtz.columns)
 #remove country labelled datasets
 hivtz2 = hivtz.drop(columns=['Malawi','Swaziland','Zambia'])
 print(hivtz2.columns)
+# Duplicate dataset
+hivtz3 = hivtz2.copy()
+
+# Check the datatype of columns in hivtz2
+print(hivtz2.dtypes)
+# Number to Factor for hivtz2 dataset
+numcol = list(range(1, 10)) + [11, 13] + list(range(14, 15)) + list(range(16, 29))
+
+# Convert selected columns to categorical variables
+hivtz2.iloc[:, numcol] = hivtz2.iloc[:, numcol].apply(lambda column: column.astype('category'))
+
+# Check the datatype of columns in hivtz2 after conversion
+print(hivtz2.dtypes)
+
+# Check for NAs (missing values) in columns
+na_counts = hivtz2.isna().sum()
+print(na_counts)
+
+# Overall missing data proportion
+overall_na_proportion = hivtz2.isna().mean().mean()
+print(overall_na_proportion)
+
+# Per column missing data proportion
+column_na_proportions = hivtz2.apply(lambda col: col.isna().sum() / len(col))
+print(column_na_proportions)
+
+# List of columns with NAs
+columns_with_na = hivtz2.columns[column_na_proportions > 0]
+print(columns_with_na)
+
