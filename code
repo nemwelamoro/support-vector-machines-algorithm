@@ -59,3 +59,23 @@ hivtz2['Pregnacy status now'] = imputer.fit_transform(hivtz2[['Pregnacy status n
 # Check for missing values after imputation
 print(hivtz2['Pregnacy status now'].isna().sum())
 
+# Exporting Dataset
+# hivtz2.to_csv("C:/Users/FBI/Downloads/filtered_phiacd4_imputed.csv", index=False)
+
+#data analysis
+df = pd.read_excel("C:/Users/FBI/Downloads/filtered phiacd4 (1).xlsx")
+
+from sklearn.model_selection import train_test_split
+
+# Convert specific columns to categorical variables
+numcol2 = list(range(1, 12)) + [13, 14, 16, 17] + list(range(18, 30))
+df.iloc[:, numcol2] = df.iloc[:, numcol2].apply(lambda column: column.astype('category'))
+
+# Drop the specified variables due to none scalability
+df = df.drop(columns=['Ever.had.a.pregnancy.that.resulted.in.a.live.birth','Kenya','Pregnacy.status.now'])
+
+# Set seed for reproducibility
+np.random.seed(123)
+
+# Split data into training and testing sets
+train_data, test_data = train_test_split(df, test_size=0.3, random_state=123)
