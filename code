@@ -113,7 +113,6 @@ precision = precision_score(test_data['CD4.category'], svm_pred, average=None,ze
 recall = recall_score(test_data['CD4.category'], svm_pred, average=None)
 f1 = f1_score(test_data['CD4.category'], svm_pred, average=None)
 conf_matrix = confusion_matrix(test_data['CD4.category'], svm_pred)
-
 # Print performance metrics
 print("Accuracy:", accuracy)
 print("Precision:", precision)
