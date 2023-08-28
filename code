@@ -87,9 +87,13 @@ from sklearn.svm import SVC
 X_train= train_data.drop(columns=['CD4.category'])
 y_train= train_data['CD4.category']
 
+# Create an imputer to fill missing values
+imputer = SimpleImputer(strategy='mean')
+X_train_imputed = imputer.fit_transform(X_train)
+
 # Build SVM model with a linear kernel
 svm_model= SVC(kernel='linear')
-svm_model.fit(X_train, y_train)
+svm_model.fit(X_train_imputed, y_train)
 
 #print model details
 print(svm_model)
