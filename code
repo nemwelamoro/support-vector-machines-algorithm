@@ -47,5 +47,15 @@ msno.bar(hivtz2)
 # Upset plot of missing data
 msno.matrix(hivtz2)
 plt.show()
+#imputation of missing values
+from sklearn.impute import SimpleImputer
+#check for missing values patterns
+missing_pattern= hivtz2.isna().sum()
+print(missing_pattern)
+#impute missing values with mean
+imputer= SimpleImputer(strategy='mean')
+hivtz2['Pregnacy status now'] = imputer.fit_transform(hivtz2[['Pregnacy status now']])
 
+# Check for missing values after imputation
+print(hivtz2['Pregnacy status now'].isna().sum())
 
