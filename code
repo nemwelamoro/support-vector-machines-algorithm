@@ -39,3 +39,13 @@ print(column_na_proportions)
 columns_with_na = hivtz2.columns[column_na_proportions > 0]
 print(columns_with_na)
 
+import missingno as msno
+import matplotlib.pyplot as plt
+# Visualize missing data distribution
+msno.bar(hivtz2)
+
+# Upset plot of missing data
+msno.matrix(hivtz2)
+plt.show()
+
+
